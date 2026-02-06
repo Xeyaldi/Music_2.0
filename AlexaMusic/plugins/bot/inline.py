@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -32,10 +20,12 @@ async def inline_query_handler(client, query):
             return
     else:
         a = VideosSearch(text, limit=20)
-        result = (await a.next()).get("result")
+        result = (await a.next()).get("result") or []
+
         answers = []
-        for x in range(15):
-            title = (result[x]["title"]).title()
+        # Düzəliş burada: artıq 15-dən az nəticə varsa, sadəcə gələn qədər işləyir
+        for x in range(min(15, len(result))):
+            title = result[x]["title"].title()
             duration = result[x]["duration"]
             views = result[x]["viewCount"]["short"]
             thumbnail = result[x]["thumbnails"][0]["url"].split("?")[0]
@@ -43,17 +33,13 @@ async def inline_query_handler(client, query):
             channel = result[x]["channel"]["name"]
             link = result[x]["link"]
             published = result[x]["publishedTime"]
-            description = f"{views} | {duration} Mins | {channel}  | {published}"
+
+            description = f"{views} | {duration} Mins | {channel} | {published}"
+
             buttons = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="• ʏᴏᴜᴛᴜʙᴇ •",
-                            url=link,
-                        )
-                    ],
-                ]
+                [[InlineKeyboardButton(text="• ʏᴏᴜᴛᴜʙᴇ •", url=link)]]
             )
+
             searched_text = f"""
 📌**ᴛɪᴛʟᴇ:** [{title}]({link})
 
@@ -63,7 +49,9 @@ async def inline_query_handler(client, query):
 🎥**ᴄʜᴀɴɴᴇʟ:** {channel}
 📎**ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ:** [ᴠɪsɪᴛ ᴄʜᴀɴɴᴇʟ]({channellink})
 
-💖 ** sᴇᴀʀᴄʜ ᴩᴏᴡᴇʀᴇᴅ ʙʏ {MUSIC_BOT_NAME} **"""
+💖 ** sᴇᴀʀᴄʜ ᴩᴏᴡᴇʀᴇᴅ ʙʏ {MUSIC_BOT_NAME} **
+"""
+
             answers.append(
                 InlineQueryResultPhoto(
                     photo_url=thumbnail,
@@ -74,7 +62,8 @@ async def inline_query_handler(client, query):
                     reply_markup=buttons,
                 )
             )
+
         try:
-            return await client.answer_inline_query(query.id, results=answers)
+            await client.answer_inline_query(query.id, results=answers)
         except Exception:
             return
