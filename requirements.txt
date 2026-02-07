@@ -24,4 +24,4 @@ uvloop
 werkzeug
 yt-dlp
 https://github.com/KSKOP69/youtube-search-python/archive/ksk.zip
-python-3.10.13
+
