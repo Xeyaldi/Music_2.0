@@ -629,7 +629,7 @@ class Call(PyTgCalls):
                 GroupCallParticipant.Action.LEFT,
             ):
                 return
-            chat_id = update.chat_id
+            chat_id = update.group_call.chat_id
             users = counter.get(chat_id)
             if not users:
                 try:
