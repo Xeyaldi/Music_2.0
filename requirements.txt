@@ -10,3 +10,4 @@ python-dotenv~=1.2.1
 yt-dlp[default]>=2025.12.8
 GitPython
 heroku3
+motor
