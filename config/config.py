@@ -41,7 +41,7 @@ BOT_ID = getenv("BOT_ID")
 
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/Xeyaldi/Music_2.0")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/TheTeamAlexa/AlexaMusic")
 
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 
@@ -67,7 +67,7 @@ YOUTUBE_DOWNLOAD_EDIT_SLEEP = int(getenv("YOUTUBE_EDIT_SLEEP", "3"))
 
 TELEGRAM_DOWNLOAD_EDIT_SLEEP = int(getenv("TELEGRAM_EDIT_SLEEP", "5"))
 
-GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/Xeyaldi/Music_2.0")
+GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/TheTeamAlexa/AlexaMusic")
 
 SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", None)
 
