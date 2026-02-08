@@ -4,7 +4,6 @@ pillow~=12.1.0
 psutil~=7.2.1
 pymongo>=4.16.0
 pytgcrypto>=1.2.11
-pytgcalls==3.0.0.dev24
 py-yt-search~=0.5.7
 python-dotenv~=1.2.1
 GitPython
@@ -12,3 +11,5 @@ heroku3
 motor
 beautifulsoup4
 yt-dlp>=2025.01.26
+pyrogram==1.4.16
+pytgcalls==0.9.1
